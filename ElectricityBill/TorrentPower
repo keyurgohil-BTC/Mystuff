@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Torrent Power</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- External Javascripts -->
+	<script src="javascript/ElectricityBill.js"></script>
+	<!-- /External Javascripts -->
+
+	<script language="javascript">
+	function setCurrentDate(){
+		var d = new Date();
+		var month=''+(d.getMonth()+1);
+		var day=''+(d.getDate());
+		var year='' + d.getFullYear();
+		
+		if(month.length<2) month='0'+month;
+		if(day.length<2) day = '0'+day;		
+		document.getElementById("inputDate").value=[day,month,year].join('/');
+
+		var duedate = new Date();
+		duedate.setDate(duedate.getDate() + 20);
+		var month=''+(duedate.getMonth()+1);
+		var day=''+(duedate.getDate());
+		var year='' + duedate.getFullYear();
+		
+		if(month.length<2) month='0'+month;
+		if(day.length<2) day = '0'+day;		
+		document.getElementById("inputDueDate").value=[day,month,year].join('/');
+	}
+	</script>
+</head>
+<body onload="setCurrentDate();">
+	<div class="container">
+	<center><h1>Torrent Power Bill Generator</h1></center>
+
+	<form name="frmElect" method="post">
+		<div class="form-inline">
+			<label for="inputMeterNum">Meter Number : </label>
+			<input type="number" class="form-control" name="txtMeter" id="inputMeterNum" min=0 placeholder="6589654" autofocus required>
+			<label for="inputDate">Date Of Creation : </label>
+			<input type="text" class="form-control" name="txtCdate" id="inputDate" readonly>
+			<label for="inputDueDate">Due Date : </label>
+			<input type="text" class="form-control" name="txtDuedate" id="inputDueDate" readonly>
+		</div>
+		<div class="form-group">
+			<label for="inputUsername">Username : </label>
+			<input type="text" class="form-control" name="txtUsername" id="inputUsername" placeholder="John lee" required>
+		</div>
+		<div class="form-group">
+			<label>Address : </label>
+			<textarea name="txtAdrs" class="form-control" placeholder="Address"></textarea>
+		</div>
+		<div class="form-group">
+			<label>Select Phase : </label>
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked>
+		    Phase-I
+		    <input type="radio" name="optionsRadios" id="optionsRadios1" value="3">
+		    Phase-III
+		</div>
+		<div class="form-inline">
+			<label for="inputPresent">Present Reading : </label>
+			<input type="number" class="form-control" name="txtPresent" id="inputMeterNum" placeholder="28372" required>
+			<label for="inputPast">Past Reading : </label>
+				<input type="number" class="form-control" name="txtPast" id="inputDate" placeholder="27278" required>
+		</div>
+		<div class="form-group">
+			<label for="inputTariff">Tariff : </label>
+			<select class="form-control" name="tariff" id="inputTariff" onchange="setCategories(this.value);">
+				<option selected value="0">Select Tariff</option>
+				<option value="1">RGP</option>
+				<option value="2">BPL</option>
+				<option value="3">GLP</option>
+				<option value="4">Non-RGP</option>
+				<option value="5">LTP-AG</option>
+			</select>
+			<label for="inputCategory">Category : </label>
+			<select class="form-control" name="category" id="category">
+				<option value="0">Select Category</option>
+			</select>
+			<div class="form-group" id="sanctionLoad">
+			</div>
+		</div>	
+	<button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal" onclick="GenerateBill();">Generate Bill</button>
+	</form>
+		<p id="uname"></p>
+
+	<!-- Modal -->
+	<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title" id="myModalLabel">Torrent Bill</h4>
+	      </div>
+	      <div class="modal-body">
+		<p id="uname">hi</p>
+	      </div>
+	      <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-primary">Print Bill</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</body>
+</html>

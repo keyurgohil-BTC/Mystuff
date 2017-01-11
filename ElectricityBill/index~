@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Electricity Bill</title>	
+	<link rel="stylesheet" href="css/ElectricityBill.css">
+	<!-- External Javascripts -->
+	<script type="text/javascript" src="javascript/ElectricityBill.js"></script>
+	<!-- /External Javascripts -->
+</head>
+
+<body>
+<section><h1>Electricity Bill Center</h1></section>
+<!-- Main section -->
+<section>
+	<div>
+	<form name="frmElect" method="POST">	
+		<div>
+			<h3>Personal Detail</h3>
+		</div>
+		<div> 
+			<label>Username : 
+			<input type="text" name="txtUsername" placeholder="Firstname Lastname" autofocus required></label>
+		</div>
+		<div>	
+			<label>Address :  
+			<textarea rows=4 cols=30 name="txtAddress" placeholder="Address goes here..." ></textarea></label>
+		</div>
+		<div>
+			<label>Supply Type : 
+			<input type="radio" value="1" name="rbPhase">1-PH<input type="radio" value="3" name="rbPhase">3-PH</label>
+		</div>
+		<div>
+			<label>Reading Date : 
+			<input type="date" name="txtDate" required></label>
+		</div>
+		<hr>
+		<div>
+			<h3>Meter Detail</h3>			
+		</div>
+		<div>
+			<label>Meter Number :  
+			<input type="number" name="numMeter" placeholder="6598472" required></label>
+		</div>
+		<div>
+			<label>Present Reading : 
+			<input type="number" name="numPRR" placeholder="28654" required></label>
+		</div>
+		<div>
+			<label>Past Reading :  
+			<input type="number" name="numPAR" placeholder="27002" required></label>
+		</div>
+		<div>
+			<label>Tariff : 
+			<select name="tariff" onchange="setCategories(this.value);">
+				<option selected value=0>--- Select Tariff ---</option>
+				<option value="1">RGP</option>
+				<option value="2">BPL</option>
+				<option value="3">GLP</option>
+				<option value="4">Non-RGP</option>
+				<option value="5">LTP-AG</option>
+			</select>
+			</label>
+		</div>
+		<div>
+			<label>category : 			
+			<select name="category" id="category">
+				<option selected value=0>--- Select Category ---</option>				
+			</select>
+			</label>
+		</div>
+		<div id="sanctionLoad">
+		</div>
+		<div>
+			<input type="button" value="GENERATE BILL" name="submt" onclick="GenerateBill();">
+		</div>
+		
+	</form>
+	</div>
+</section>
+<!-- /Main section -->
+
+<!-- Display Bill -->
+<table border=1 width="100%">
+	<caption>Electricity Bill-Online Print<caption>
+	<tr>
+		<td id="uname">Firstname Lastname</td>		
+	<tr>
+	<tr>
+		<td id="adrs">Addess</td>
+	<tr>
+	<tr>
+		<td>
+			<table width="60%" border=1>
+				<tr>
+					<td>CATEGORY</td>
+					<td>SANCTION LOAD</td>
+					<td>SUPPLY TYPE</td>
+					<td>READING DATE</td>
+				</tr>
+				<tr>
+					<td id="setCategory"></td>
+					<td id="setLoad"></td>
+					<td id="setSType"></td>
+					<td id="setDate"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table width="60%" border=1>
+				<tr>
+					<td width="70%">Energy Charges : </td>
+					<td id="setEC"></td>
+				</tr>
+				<tr>
+					<td width="70%">FPPPA Charges : </td>
+					<td id="setFPPPA"></td>
+				</tr>
+				<tr>
+					<td width="70%">Regutatory Charges : </td>
+					<td id="setRCharge"></td>
+				</tr>
+				<tr>
+					<td width="70%">Fixed Charges : </td>
+					<td id="setFCharge"></td>
+				</tr>
+				<tr>
+					<td width="70%">Govt Duty : </td>
+					<td id="setgovtDuty"></td>
+				</tr>
+				<tr>
+					<td width="70%">Meter Rent : </td>
+					<td id="setmeterRant"></td>
+				</tr>
+				<tr style="background-color:grey;">
+					<td width="70%">Total Energy Charges Without Govt. Duty : </td>
+					<td id="setchargeWithoutGD"></td>
+				</tr>
+				<tr>
+					<td width="70%">Govt Duty : </td>
+					<td id="setgovtDuty2"></td>
+				</tr>
+				<tr>
+					<td width="70%">Current Bill Amount : </td>
+					<td id="setcurrentBillAmount"></td>
+				</tr>
+				<tr>
+					<td width="70%">Other Debits : </td>
+					<td id="">----</td>
+				</tr>
+				<tr style="background-color:grey;">
+					<td width="70%">Amount Due : </td>
+					<td id="setAmountDue"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>
