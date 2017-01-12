@@ -4,9 +4,9 @@ end
 class Complement
   def self.of_dna(dna)
     dna.upcase!
-    rna=''
-    dna=dna.split("")
-    (0..(dna.length-1)).each do |i|
+    rna = ''
+    dna = dna.split("")
+    (0...(dna.length)).each do |i|
       case dna[i]
       when 'G'
         rna += 'C'
