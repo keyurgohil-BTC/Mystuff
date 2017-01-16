@@ -24,11 +24,6 @@ class BeerSong
   def lyrics
     verses(99,0)
   end
-
-  def if_more(beer_bottles_e,last)
-    (beer_bottles_e != last) ? "\n" : ""
-  end
-
 end
 module BookKeeping
   VERSION = 2
