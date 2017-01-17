@@ -15,7 +15,6 @@ class Nucleotide
 
   def histogram
     asides = { "A" => 0, "C" => 0, "G" => 0,"T" => 0}
-    return asides if @dna_stream.nil?
     asides.keys.map { |key| asides[key] = count(key) }
     asides
   end
