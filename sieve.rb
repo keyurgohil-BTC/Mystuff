@@ -10,7 +10,7 @@ class Sieve
 	end
 	def primes
 		return [] if @number <= 1
-		a = []				
+		a = []
 		Prime.each(@number) { |e| a.push(e) }
 	end
 end
